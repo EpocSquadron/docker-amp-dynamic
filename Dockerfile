@@ -70,6 +70,8 @@ RUN a2dissite 000-default && a2ensite dynamic
 # Add supervisor file
 ADD assets/supervisor/apache.conf /etc/supervisor/conf.d/apache.conf
 
+VOLUME ["/var/www", "/var/lib/mysql", "/var/log"]
+
 # Expose apache and mysql on standard ports
 EXPOSE 80 443 3306
 
