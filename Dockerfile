@@ -55,6 +55,7 @@ ADD assets/supervisor/mysql.conf /etc/supervisor/conf.d/mysql.conf
 
 # Make sure all the desired apache modules are on
 RUN a2enmod ssl headers rewrite vhost_alias
+RUN php5enmod mcrypt
 
 # Set up remote debugging for xdebug
 ADD assets/apache/xdebug.ini /etc/php5/conf.d/xdebug.ini
