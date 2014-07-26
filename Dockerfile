@@ -63,6 +63,10 @@ ADD assets/apache/xdebug.ini /etc/php5/conf.d/xdebug.ini
 # Set the default timezone
 ADD assets/apache/timezone.ini /etc/php5/conf.d/timezone.ini
 
+# Make sure we can use .htaccess files
+ADD assets/apache/enable-htaccess.conf /etc/apache2/conf-available/htaccess.conf
+RUN a2enconf htaccess
+
 # Disable default site and replace with our own
 ADD assets/apache/dynamic-vhost.conf /etc/apache2/sites-available/dynamic.conf
 ADD assets/apache/setDocRoot.php /etc/apache2/includes/
