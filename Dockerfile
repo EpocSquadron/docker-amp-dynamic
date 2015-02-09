@@ -15,8 +15,10 @@ RUN apt-get install -y apache2 \
 	php5-curl \
 	php5-mcrypt \
 	php5-xdebug \
+	php5-redis \
 	php-apc \
 	libapache2-mod-php5 \
+	redis-server \
 	mysql-server \
 	supervisor
 
@@ -76,6 +78,13 @@ RUN a2dissite 000-default && a2ensite dynamic
 ADD assets/supervisor/apache.conf /etc/supervisor/conf.d/apache.conf
 
 VOLUME ["/var/www", "/var/lib/mysql", "/var/log"]
+
+###################
+##  Redis Setup  ##
+###################
+
+# Add supervisor file
+ADD assets/supervisor/redis.conf /etc/supervisor/conf.d/redis.conf
 
 # Expose apache and mysql on standard ports
 EXPOSE 80 443 3306
