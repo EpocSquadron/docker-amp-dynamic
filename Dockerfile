@@ -60,7 +60,8 @@ RUN a2enmod ssl headers rewrite vhost_alias
 RUN php5enmod mcrypt
 
 # Set up remote debugging for xdebug
-ADD assets/apache/xdebug.ini /etc/php5/conf.d/xdebug.ini
+ADD assets/apache/xdebug.ini /etc/php5/mods-available/xdebug.ini
+RUN php5enmod xdebug
 
 # Set the default timezone
 ADD assets/apache/timezone.ini /etc/php5/conf.d/timezone.ini
