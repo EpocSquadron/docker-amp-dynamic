@@ -47,11 +47,11 @@ ADD assets/supervisor/supervisor.conf /etc/supervisor.conf
 ADD assets/mysql/grants.sql /etc/mysql/
 
 # Add a conf file for correcting "listen"
-ADD assets/mysql/listen.cnf /etc/mysql/conf.d/
+RUN sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # Install base database files, or mysql
 # won't start.
-RUN mysql_install_db
+RUN mysql_install_db --explicit_defaults_for_timestamp
 
 # Add supervisor file
 ADD assets/supervisor/mysql.conf /etc/supervisor/conf.d/mysql.conf
