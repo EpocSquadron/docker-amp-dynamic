@@ -1,8 +1,11 @@
 # Start with Ubuntu base
-FROM ubuntu:14.04
+FROM ubuntu:15.10
 
 # Credit
 MAINTAINER Daniel Poulin
+
+# Keep dpkg from asking shit
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install some basics
 RUN apt-get update
@@ -16,7 +19,6 @@ RUN apt-get install -y apache2 \
 	php5-mcrypt \
 	php5-xdebug \
 	php5-redis \
-	php-apc \
 	libapache2-mod-php5 \
 	redis-server \
 	mysql-server \
@@ -46,6 +48,10 @@ ADD assets/mysql/grants.sql /etc/mysql/
 
 # Add a conf file for correcting "listen"
 ADD assets/mysql/listen.cnf /etc/mysql/conf.d/
+
+# Install base database files, or mysql
+# won't start.
+RUN mysql_install_db
 
 # Add supervisor file
 ADD assets/supervisor/mysql.conf /etc/supervisor/conf.d/mysql.conf
