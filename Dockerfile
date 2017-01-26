@@ -19,6 +19,8 @@ RUN apt-get install -y apache2 \
 	php5-mcrypt \
 	php5-xdebug \
 	php5-redis \
+    php5-imagick \
+    php5-intl \
 	libapache2-mod-php5 \
 	redis-server \
 	mysql-server \
