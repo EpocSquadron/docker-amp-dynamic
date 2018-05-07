@@ -74,6 +74,9 @@ RUN php5enmod xdebug
 # Set the default timezone
 ADD assets/apache/timezone.ini /etc/php5/conf.d/timezone.ini
 
+# Set higher limits on max post and input vars
+ADD assets/apache/max_vars.ini /etc/php5/conf.d/max_vars.ini
+
 # Make sure we can use .htaccess files
 ADD assets/apache/enable-htaccess.conf /etc/apache2/conf-available/htaccess.conf
 RUN a2enconf htaccess
